@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+android {
+    def ext = rootProject.extensions.ext
+    compileSdkVersion ext.android.compileSdk
+    buildToolsVersion "29.0.2"
+
+
+    defaultConfig {
+        minSdkVersion ext.android.minSdk
+        targetSdkVersion ext.android.targetSdk
+        versionCode ext.application.versionCode
+        versionName ext.application.versionName
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    kapt{
+        generateStubs =true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+}
+
+def API_URL = System.getenv("API_URL") ?: apiUrl
+
+android.buildTypes.each { type ->
+    type.buildConfigField "String", "API_URL", "\"$API_URL\""
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    kapt dataKaptDependencies
+    implementation dataDependencies
+    testImplementation dataTestDependencies
+    implementation project(':domain')
+}

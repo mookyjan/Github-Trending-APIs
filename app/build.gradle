@@ -4,32 +4,70 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
 android {
-    compileSdkVersion 29
+    def ext = rootProject.extensions.ext
+    compileSdkVersion ext.android.compileSdk
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.mudassirkhan.trendinggithubapis"
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId ext.application.id
+        minSdkVersion ext.android.minSdk
+        targetSdkVersion ext.android.targetSdk
+        versionCode ext.application.versionCode
+        versionName ext.application.versionName + versionCode
+        testInstrumentationRunner ext.application.testInstrumentationRunner
+        vectorDrawables.useSupportLibrary true
+        multiDexEnabled true
+        testHandleProfiling true
+        testFunctionalTest true
     }
     buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled true
+    }
+
+    kapt {
+        generateStubs = true
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    testOptions {
+        unitTests {
+
+            // By default, local unit tests throw an exception any time the code you are testing tries to access
+            // Android platform APIs (unless you mock Android dependencies yourself or with a testing
+            // framework like Mockito). However, you can enable the following property so that the test
+            // returns either null or zero when accessing platform APIs, rather than throwing an exception.
+            returnDefaultValues true
+            includeAndroidResources = true
+        }
+        animationsDisabled true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation project(':domain')
+    implementation project(':data')
+    kapt presentationKaptDependencies
+    implementation presentationDependencies
+    testImplementation presentationTestDependencies
+    androidTestImplementation presentationInstrumentationTestDependencies
+
 }
