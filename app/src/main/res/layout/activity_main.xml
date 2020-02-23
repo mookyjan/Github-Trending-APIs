@@ -1,18 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MainActivity"
+        android:background="@color/white_color"
+        android:id="@+id/ly_main_activity"
+        >
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/trToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:title=""
+                    android:background="@android:color/white"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+                <TextView
+                    style="@style/toolBarTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/txt_tool_bar_title" />
+
+            </RelativeLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shimmer_layout"
+
+            app:layout_constraintTop_toBottomOf="@+id/appbar_layout"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <include layout="@layout/shimmer_place_holder" />
+
+                <include layout="@layout/shimmer_place_holder" />
+                <include layout="@layout/shimmer_place_holder"/>
+
+                <include layout="@layout/shimmer_place_holder"/>
+
+                <include layout="@layout/shimmer_place_holder" />
+
+                <include layout="@layout/shimmer_place_holder"/>
+                <include layout="@layout/shimmer_place_holder"/>
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/ly_swipe_refresh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar_layout"
+
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:id="@+id/rv_trending_repo_list"
+
+
+                tools:listitem="@layout/single_item_repository"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appbar_layout" />
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <include
+            android:id="@+id/ly_offline"
+            layout="@layout/error_layout_screen"
+            android:visibility="gone"
+            tools:viewModel="@{viewModel}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

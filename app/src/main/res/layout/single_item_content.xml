@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_12sdp">
+
+    <TextView
+        android:id="@+id/repo_url"
+        style="@style/textTitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:maxLines="4"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="repo url"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_50sdp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/language_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_circle"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/repo_language"
+        app:layout_constraintStart_toStartOf="@id/repo_url"
+        app:layout_constraintTop_toTopOf="@+id/repo_language" />
+
+    <TextView
+        android:id="@+id/repo_language"
+        style="@style/textTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:drawablePadding="@dimen/_10sdp"
+        android:drawableStart="@drawable/ic_circle"
+
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintStart_toEndOf="@id/language_indicator"
+        app:layout_constraintTop_toBottomOf="@id/repo_url"
+        tools:text="C++"
+        android:drawableLeft="@drawable/ic_circle" />
+
+    <ImageView
+        android:id="@+id/stars_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:src="@mipmap/ic_star_yellow"
+        app:layout_constraintBottom_toBottomOf="@+id/repo_stars_count"
+        app:layout_constraintStart_toEndOf="@id/repo_language"
+        app:layout_constraintTop_toTopOf="@+id/repo_stars_count"
+        android:layout_marginLeft="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/repo_stars_count"
+        style="@style/textTitleStyle"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintStart_toEndOf="@id/stars_logo"
+        app:layout_constraintTop_toBottomOf="@id/repo_url"
+        tools:text="1234"
+        android:layout_marginLeft="10dp" />
+
+    <ImageView
+        android:id="@+id/forks_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:src="@mipmap/ic_fork"
+        app:layout_constraintBottom_toBottomOf="@+id/repo_forks_count"
+        app:layout_constraintStart_toEndOf="@id/repo_stars_count"
+        app:layout_constraintTop_toTopOf="@+id/repo_forks_count"
+        android:layout_marginLeft="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/repo_forks_count"
+        style="@style/textTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_12sdp"
+
+        app:layout_constraintStart_toEndOf="@id/forks_logo"
+        app:layout_constraintTop_toBottomOf="@id/repo_url"
+        tools:text="1234"
+        android:paddingRight="@dimen/_12sdp"
+        android:layout_marginLeft="10dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

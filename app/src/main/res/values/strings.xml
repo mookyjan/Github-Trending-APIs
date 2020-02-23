@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">TrendingGithubAPIs</string>
+    <string name="app_name">Github Trending APIs</string>
+    <string name="txt_tool_bar_title">Trending</string>
+    <string name="menu_sort_by_name">Sort by Name</string>
+    <string name="menu_sort_by_stars">Sort by Stars</string>
+    <string name="txt_error_title">Something went Wrong ...</string>
+    <string name="txt_error_description">An alien is probably blocking signal.</string>
+    <string name="btn_retry">Retry</string>
+    <string name="txt_no_internet">No Internet Connection Please Try Again</string>
 </resources>
