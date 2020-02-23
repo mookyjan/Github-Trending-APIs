@@ -3,82 +3,90 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<androidx.constraintlayout.widget.ConstraintLayout
 
-  android:id="@+id/layout_error"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.mudassirkhan.trendinggithubapis.ui.TrendingRepositoriesViewModel" />
+    </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <ImageView
-        android:id="@+id/iv_no_internet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:src="@mipmap/nointernet_connection"
-        app:layout_constraintBottom_toTopOf="@+id/tv_error_title"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.42"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
-
-    <TextView
-        android:id="@+id/tv_error_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_error_title"
-        android:textColor="@color/black_color"
-        android:textSize="@dimen/_14sdp"
-        android:fontFamily="@font/roboto_bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_retry"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
-
-    <TextView
-        android:id="@+id/tv_error_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/txt_error_description"
-        android:textSize="@dimen/_12sdp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.541"
-        app:layout_constraintStart_toStartOf="@+id/guideline_left"
-        app:layout_constraintTop_toBottomOf="@+id/tv_error_title" />
+        android:id="@+id/layout_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/btn_retry"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/border_rectangle_button"
-        android:text="@string/btn_retry"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/guideline_left" />
+        <ImageView
+            android:id="@+id/iv_no_internet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="148dp"
+            android:src="@mipmap/nointernet_connection"
+            app:layout_constraintBottom_toTopOf="@+id/tv_error_title"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintHorizontal_bias="0.42"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.737" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline_left"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/_12sdp"
-        />
+        <TextView
+            android:id="@+id/tv_error_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_error_title"
+            android:textColor="@color/black_color"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/roboto_bold"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_retry"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintHorizontal_bias="0.522"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.68" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/guideline_right"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_12sdp"
-        />
+        <TextView
+            android:id="@+id/tv_error_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/txt_error_description"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintHorizontal_bias="0.541"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_error_title" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btn_retry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border_rectangle_button"
+            android:text="@string/btn_retry"
+            android:onClick="@{() ->viewModel.refresh()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/guideline_left" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline_left"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/_12sdp"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline_right"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/_12sdp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

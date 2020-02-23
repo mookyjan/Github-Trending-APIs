@@ -3,6 +3,7 @@ package com.mudassirkhan.trendinggithubapis
 import android.app.Application
 import com.github.ajalt.timberkt.Timber
 import com.mudassirkhan.githubtrendingapis.di.component.AppComponent
+import com.mudassirkhan.githubtrendingapis.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
