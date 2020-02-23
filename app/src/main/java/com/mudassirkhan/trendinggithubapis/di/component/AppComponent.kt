@@ -2,6 +2,7 @@ package com.mudassirkhan.githubtrendingapis.di.component
 
 import android.app.Application
 import android.content.Context
+import com.mudassirkhan.data.NetworkModule
 
 import com.mudassirkhan.githubtrendingapis.di.module.*
 import com.mudassirkhan.githubtrendingapis.di.module.AppModule
@@ -18,7 +19,8 @@ import javax.inject.Singleton
     AppModule::class,
     AndroidInjectionModule::class,
     ViewModelFactoryModule::class,
-    ActivityModule::class
+    ActivityModule::class,
+    NetworkModule::class
 
 ))
 interface AppComponent {
