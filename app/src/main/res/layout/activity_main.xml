@@ -10,6 +10,9 @@
             name="viewModel"
             type="com.mudassirkhan.trendinggithubapis.ui.TrendingRepositoriesViewModel" />
 
+        <variable
+            name="callback"
+            type="com.mudassirkhan.githubtrendingapis.ui.adapter.RepositorisListAdapter.Callbacks" />
 
     </data>
 
@@ -76,7 +79,7 @@
                 <include layout="@layout/shimmer_place_holder"/>
 
                 <include layout="@layout/shimmer_place_holder" />
-
+                <include layout="@layout/shimmer_place_holder" />
                 <include layout="@layout/shimmer_place_holder"/>
                 <include layout="@layout/shimmer_place_holder"/>
 
@@ -99,7 +102,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                app:repositoryAdapter="@{viewModel.repositoriesList}"
+                eventCallbacks="@{callback}"
                 android:id="@+id/rv_trending_repo_list"
                 android:visibility="@{!viewModel.loading}"
 
