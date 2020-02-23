@@ -23,8 +23,8 @@ class NetworkModule {
     @Provides
     @Singleton
     @VisibleForTesting
-     fun provideHackerAPI(okHttpClient: OkHttpClient): GitHubApiService{
-        val baseUrl =  BuildConfig.API_URL
+     fun provideHackerAPI(okHttpClient: OkHttpClient,baseUrl:String ): GitHubApiService{
+//        val baseUrl =  BuildConfig.API_URL
         val moshi = Moshi.Builder()
             .add(Wrapped.ADAPTER_FACTORY)
 //            .add(MoshiConverters())
@@ -70,4 +70,13 @@ class NetworkModule {
 //        }
         return interceptor
     }
+
+    @Provides
+    @Singleton
+    fun getUrl():String{
+        return  BuildConfig.API_URL
+    }
+
+
+
 }
