@@ -2,7 +2,9 @@ package com.mudassirkhan.trendinggithubapis.ui
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -51,7 +53,22 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main,menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when(id){
+            R.id.action_sort_by_stars ->
+                //TODO sort the list
+                Toast.makeText(this,"To be implemented",Toast.LENGTH_SHORT).show()
+            R.id.action_sort_by_name ->Toast.makeText(this,"To be implemented",Toast.LENGTH_SHORT).show()
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 
 }
