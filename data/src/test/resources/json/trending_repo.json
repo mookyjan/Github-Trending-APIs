@@ -1,0 +1,22 @@
+[
+  {
+    "author": "OpenRCE",
+    "name": "Malware-Analysis-Training",
+    "avatar": "https://github.com/OpenRCE.png",
+    "url": "https://github.com/OpenRCE/Malware-Analysis-Training",
+    "description": "Retired beginner/intermediate malware analysis training materials from @pedramamini and @erocarrera.",
+    "language": "HTML",
+    "languageColor": "#e34c26",
+    "stars": 312,
+    "forks": 58,
+    "currentPeriodStars": 192,
+    "builtBy": [
+      {
+        "username": "pedramamini",
+        "href": "https://github.com/pedramamini",
+        "avatar": "https://avatars3.githubusercontent.com/u/1253573"
+      }
+    ]
+  }
+
+]
