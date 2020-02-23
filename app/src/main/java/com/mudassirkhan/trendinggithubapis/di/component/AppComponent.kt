@@ -20,7 +20,9 @@ import javax.inject.Singleton
     AndroidInjectionModule::class,
     ViewModelFactoryModule::class,
     ActivityModule::class,
-    NetworkModule::class
+    NetworkModule::class,
+    DataModule::class,
+    DomainModule::class
 
 ))
 interface AppComponent {
