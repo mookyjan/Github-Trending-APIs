@@ -1,5 +1,6 @@
 package com.mudassirkhan.data.remote.model
 
+import com.mudassirkhan.data.local.model.GithubTrendingLocalEntity
 import com.mudassirkhan.domain.entity.GithubTrendingEntity
 import com.squareup.moshi.Json
 
@@ -25,6 +26,12 @@ data class GithubTrendingApiResponse(
     @Json(name ="url")
     val url: String? =null
 )
+
+
+fun GithubTrendingApiResponse.mapToLocal(): GithubTrendingLocalEntity =
+    GithubTrendingLocalEntity(author, avatar , currentPeriodStars, description, forks, language, languageColor, name, stars, url)
+
+fun List<GithubTrendingApiResponse>.mapToLocal(): List<GithubTrendingLocalEntity> = map { it.mapToLocal() }
 
 
 fun GithubTrendingApiResponse.mapToDomain(): GithubTrendingEntity =

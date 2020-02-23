@@ -2,6 +2,7 @@ package com.mudassirkhan.githubtrendingapis.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class IPreference @Inject constructor(private val context: Context) {
@@ -24,5 +25,15 @@ class IPreference @Inject constructor(private val context: Context) {
 
     fun getLastTimeSaved(): Long? {
         return prefs.getLong(SAVED_AT_TIME, 0)
+    }
+
+    /**
+     * fetch data after two hours
+     */
+    fun isFetchNeeded():Boolean{
+        val currentTime =System.currentTimeMillis()
+        val lastUpdateTime = getLastTimeSaved()
+        val hours = TimeUnit.MILLISECONDS.toHours( currentTime- lastUpdateTime!!)
+        return hours>2
     }
 }
