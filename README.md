@@ -45,12 +45,9 @@ also TODO are given in the area which we can improve more.
 
 
 ##TODO
- fix issue of loading the comments when coming back to details screen
-add shimmer effect at start of the loading screen
-add unit test cases 
-add design for the App architecture
-every time load the news list when comeback to the newslist screen or refresh
-improve design of comments list to show a proper link between child comments
+Sorting the list by names and stars and add menu
+improving the design
+
 
 
 
