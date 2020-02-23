@@ -105,8 +105,7 @@
                 app:repositoryAdapter="@{viewModel.repositoriesList}"
                 eventCallbacks="@{callback}"
                 android:id="@+id/rv_trending_repo_list"
-                android:visibility="@{!viewModel.loading}"
-
+                android:visibility="@{!viewModel.loading &amp;&amp; !viewModel.empty.booleanValue()}"
                 tools:listitem="@layout/single_item_repository"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
