@@ -10,9 +10,18 @@ import com.mudassirkhan.trendinggithubapis.R
 import com.mudassirkhan.trendinggithubapis.databinding.SingleItemRepositoryBinding
 
 
-class RepositorisListAdapter ( private val items: List<TrendRepositoryModel>, private val callbacks: Callbacks? = null) :
+class RepositorisListAdapter ( private val repoList: List<TrendRepositoryModel>, private val callbacks: Callbacks? = null) :
 RecyclerView.Adapter<RepositorisListAdapter.ViewHolder>() {
 
+    var items = listOf<TrendRepositoryModel>()
+
+    init {
+        items = repoList
+    }
+
+    fun setData(list: List<TrendRepositoryModel>){
+        items =list
+    }
     interface Callbacks {
         fun onItemClick(view: View, item: TrendRepositoryModel)
     }

@@ -102,7 +102,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:repositoryAdapter="@{viewModel.repositoriesList}"
+
                 eventCallbacks="@{callback}"
                 android:id="@+id/rv_trending_repo_list"
                 android:visibility="@{!viewModel.loading &amp;&amp; !viewModel.empty.booleanValue()}"

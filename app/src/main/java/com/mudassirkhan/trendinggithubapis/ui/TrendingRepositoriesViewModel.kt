@@ -6,26 +6,19 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.ajalt.timberkt.Timber
-import com.mudassirkhan.domain.entity.GithubTrendingEntity
 import com.mudassirkhan.domain.usecase.GetGithubTrendingApiUseCase
 import com.mudassirkhan.githubtrendingapis.ui.model.TrendRepositoryModel
 import com.mudassirkhan.githubtrendingapis.ui.model.mapToModel
-import com.mudassirkhan.githubtrendingapis.utils.IPreference
 import com.mudassirkhan.githubtrendingapis.utils.IResourceProvider
-import com.mudassirkhan.githubtrendingapis.utils.isNetworkConnected
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableObserver
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
-import java.time.Duration
-import java.time.ZonedDateTime
-import java.util.concurrent.TimeUnit
-
 import javax.inject.Inject
 
-class TrendingRepositoriesViewModel @Inject constructor(private val getGithubTrendingApiUseCase: GetGithubTrendingApiUseCase,
-                                                        private val iResourceProvider: IResourceProvider,
-                                                        private val iPreference: IPreference) : ViewModel() {
+class TrendingRepositoriesViewModel @Inject constructor(
+    private val getGithubTrendingApiUseCase: GetGithubTrendingApiUseCase,
+    private val iResourceProvider: IResourceProvider
+) : ViewModel() {
 
     //variable for the news list
     var repositoriesList = ObservableArrayList<TrendRepositoryModel>()
@@ -35,32 +28,54 @@ class TrendingRepositoriesViewModel @Inject constructor(private val getGithubTre
     //variable for error message
     val error = ObservableField<String>()
     val empty = MutableLiveData(false)
+    var sortedResult: MutableLiveData<List<TrendRepositoryModel>> =
+        MutableLiveData(emptyList())
+
+
 
     fun refresh() = loadTrendingRepositories(true)
 
-     fun loadTrendingRepositories(refresh: Boolean=false){
+    fun sortByNames() {
+        val item =
+            sortedResult.value!!.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.name!! })
+        sortedResult.postValue(item)
+        repositoriesList.sortedWith(compareBy({ it.name }))
+    }
+
+    fun sortByStars() {
+        val item = repositoriesList.sortedWith(compareBy({ it.stars }))
+        sortedResult.postValue(item)
+
+    }
+
+    /**
+     * method to get the list of trending repositories
+     */
+    fun loadTrendingRepositories(refresh: Boolean = false) {
         loading.set(true)
-         empty.value=false
+        empty.value = false
         getGithubTrendingApiUseCase.execute(refresh)
-            .subscribeBy(onSuccess ={ t->
+            .subscribeBy(onSuccess = { t ->
                 Timber.d { "trending  api response success ${t.size}" }
                 loading.set(false)
                 empty.postValue(false)
                 repositoriesList.clear()
                 repositoriesList.addAll(t.mapToModel())
+                sortedResult.postValue(t.mapToModel())
 
-            },onError ={e->
+            }, onError = { e ->
                 Timber.e { "trending api error $e" }
                 loading.set(false)
                 empty.postValue(true)
+//                iResourceProvider.context.getString(R.string.txt_error_title)
                 error.set(e.localizedMessage ?: e.message ?: "Unknown error")
             }).addTo(compositeDisposable)
     }
 
 
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.dispose()
-    }
+//    override fun onCleared() {
+//        super.onCleared()
+//        compositeDisposable.dispose()
+//    }
 
 }
