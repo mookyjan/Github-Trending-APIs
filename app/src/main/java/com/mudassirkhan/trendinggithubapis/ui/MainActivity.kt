@@ -6,14 +6,12 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ObservableList
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.github.ajalt.timberkt.Timber
 import com.google.android.material.snackbar.Snackbar
-import com.mudassirkhan.githubtrendingapis.ui.adapter.RepositorisListAdapter
-import com.mudassirkhan.githubtrendingapis.ui.model.TrendRepositoryModel
+import com.mudassirkhan.trendinggithubapis.ui.adapter.RepositorisListAdapter
 import com.mudassirkhan.trendinggithubapis.R
 import com.mudassirkhan.trendinggithubapis.databinding.ActivityMainBinding
 import dagger.android.AndroidInjection
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         AndroidInjection.inject(this)
-//        viewModel =ViewModelProviders.of(this).get(TrendingRepositoriesViewModel::class.java)
         viewModel = ViewModelProviders.of(this, this.viewModelFactory)
             .get(TrendingRepositoriesViewModel::class.java)
         mBinding.viewModel = viewModel
@@ -40,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         mAdapter = RepositorisListAdapter(viewModel.sortedResult.value!!,null)
         mBinding.rvTrendingRepoList.adapter =mAdapter
         toolbarSetup()
-        viewModel.loadTrendingRepositories()
+//        viewModel.loadTrendingRepositories()
         observeEvents()
 
     }

@@ -7,9 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.ajalt.timberkt.Timber
 import com.mudassirkhan.domain.usecase.GetGithubTrendingApiUseCase
-import com.mudassirkhan.githubtrendingapis.ui.model.TrendRepositoryModel
-import com.mudassirkhan.githubtrendingapis.ui.model.mapToModel
-import com.mudassirkhan.githubtrendingapis.utils.IResourceProvider
+import com.mudassirkhan.trendinggithubapis.ui.model.TrendRepositoryModel
+import com.mudassirkhan.trendinggithubapis.ui.model.mapToModel
+import com.mudassirkhan.trendinggithubapis.utils.IResourceProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
@@ -31,7 +31,9 @@ class TrendingRepositoriesViewModel @Inject constructor(
     var sortedResult: MutableLiveData<List<TrendRepositoryModel>> =
         MutableLiveData(emptyList())
 
-
+    init {
+        loadTrendingRepositories()
+    }
 
     fun refresh() = loadTrendingRepositories(true)
 
@@ -73,9 +75,9 @@ class TrendingRepositoriesViewModel @Inject constructor(
     }
 
 
-//    override fun onCleared() {
-//        super.onCleared()
-//        compositeDisposable.dispose()
-//    }
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
+    }
 
 }
