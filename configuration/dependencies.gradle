@@ -27,7 +27,8 @@ ext {
     rxKotlinVersion = '2.4.0'
     rxAndroidVersion = '2.1.1'
     retrofitVersion = '2.6.2'
-    okHttpVersion = '4.2.2'
+    //TODO Note :Lower this dependency value to make application compitable with Lower API level
+    okHttpVersion = '3.12.0'
     moshiVersion = '1.9.0'
     moshiLazyAdapterVersion = '2.2'
     lifecycleVersion = '1.1.1'
