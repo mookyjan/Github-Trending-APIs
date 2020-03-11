@@ -1,4 +1,4 @@
-package com.mudassirkhan.githubtrendingapis.utils
+package com.mudassirkhan.trendinggithubapis.utils
 
 import android.graphics.Bitmap
 import android.view.View

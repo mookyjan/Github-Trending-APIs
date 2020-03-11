@@ -1,4 +1,4 @@
-package com.mudassirkhan.githubtrendingapis.ui.model
+package com.mudassirkhan.trendinggithubapis.ui.model
 
 import com.mudassirkhan.domain.entity.GithubTrendingEntity
 

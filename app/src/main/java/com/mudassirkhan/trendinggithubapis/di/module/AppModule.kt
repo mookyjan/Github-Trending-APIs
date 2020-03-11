@@ -1,11 +1,11 @@
-package com.mudassirkhan.githubtrendingapis.di.module
+package com.mudassirkhan.trendinggithubapis.di.module
 
 import android.app.Application
 import android.content.Context
 import com.mudassirkhan.domain.Schedulers
 import com.mudassirkhan.githubtrendingapis.di.module.scheduler.AppSchedulers
-import com.mudassirkhan.githubtrendingapis.utils.IPreference
-import com.mudassirkhan.githubtrendingapis.utils.IResourceProvider
+import com.mudassirkhan.data.util.IPreference
+import com.mudassirkhan.trendinggithubapis.utils.IResourceProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named

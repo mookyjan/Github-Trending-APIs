@@ -1,4 +1,4 @@
-package com.mudassirkhan.githubtrendingapis.di.module
+package com.mudassirkhan.trendinggithubapis.di.module
 
 import com.mudassirkhan.domain.Schedulers
 import com.mudassirkhan.domain.gateway.TrendingRepositoriesGateWay

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="trendItem"
-            type="com.mudassirkhan.githubtrendingapis.ui.model.TrendRepositoryModel" />
+            type="com.mudassirkhan.trendinggithubapis.ui.model.TrendRepositoryModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

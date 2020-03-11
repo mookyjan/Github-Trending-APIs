@@ -1,13 +1,12 @@
-package com.mudassirkhan.githubtrendingapis.di.component
+package com.mudassirkhan.trendinggithubapis.di.component
 
 import android.app.Application
 import android.content.Context
 import com.mudassirkhan.data.NetworkModule
 
-import com.mudassirkhan.githubtrendingapis.di.module.*
-import com.mudassirkhan.githubtrendingapis.di.module.AppModule
 import com.mudassirkhan.trendinggithubapis.GitHubTrendingApp
-import com.mudassirkhan.trendinggithubapis.di.module.ActivityModule
+import com.mudassirkhan.trendinggithubapis.di.module.*
+import com.mudassirkhan.trendinggithubapis.di.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

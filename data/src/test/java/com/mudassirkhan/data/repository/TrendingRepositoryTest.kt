@@ -6,11 +6,9 @@ import com.mudassirkhan.data.local.model.GithubTrendingLocalEntity
 import com.mudassirkhan.data.remote.TrendingRemoteDataSource
 import com.mudassirkhan.data.remote.model.GithubTrendingApiResponse
 import com.mudassirkhan.data.remote.model.mapToLocal
-import com.mudassirkhan.githubtrendingapis.utils.IPreference
+import com.mudassirkhan.data.util.IPreference
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

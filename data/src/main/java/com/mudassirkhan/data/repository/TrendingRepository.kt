@@ -5,7 +5,7 @@ import com.mudassirkhan.data.local.TrendingLocalDataSource
 import com.mudassirkhan.data.local.model.GithubTrendingLocalEntity
 import com.mudassirkhan.data.remote.TrendingRemoteDataSource
 import com.mudassirkhan.data.remote.model.mapToLocal
-import com.mudassirkhan.githubtrendingapis.utils.IPreference
+import com.mudassirkhan.data.util.IPreference
 import io.reactivex.Single
 
 class TrendingRepository(

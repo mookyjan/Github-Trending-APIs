@@ -1,4 +1,4 @@
-package com.mudassirkhan.githubtrendingapis.di.module
+package com.mudassirkhan.trendinggithubapis.di.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,9 +1,7 @@
 package com.mudassirkhan.data
 
 import androidx.annotation.VisibleForTesting
-import com.mudassirkhan.data.BuildConfig
 import com.mudassirkhan.data.remote.api.GitHubApiService
-
 import com.serjltt.moshi.adapters.Wrapped
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

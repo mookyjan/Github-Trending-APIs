@@ -1,4 +1,4 @@
-package com.mudassirkhan.githubtrendingapis.utils
+package com.mudassirkhan.data.util
 
 import android.content.Context
 import android.content.SharedPreferences

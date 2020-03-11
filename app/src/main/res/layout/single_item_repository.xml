@@ -9,7 +9,7 @@
         <import type="android.view.View"/>
         <variable
             name="item"
-            type="com.mudassirkhan.githubtrendingapis.ui.model.TrendRepositoryModel" />
+            type="com.mudassirkhan.trendinggithubapis.ui.model.TrendRepositoryModel" />
     </data>
 
 

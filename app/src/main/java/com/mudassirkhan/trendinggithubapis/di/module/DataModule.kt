@@ -1,4 +1,4 @@
-package com.mudassirkhan.githubtrendingapis.di.module
+package com.mudassirkhan.trendinggithubapis.di.module
 
 import android.content.Context
 import com.mudassirkhan.data.gateway.TrendingRepositoriesGateWayImpl
@@ -9,7 +9,7 @@ import com.mudassirkhan.data.remote.TrendingRemoteDataSource
 import com.mudassirkhan.data.remote.api.GitHubApiService
 import com.mudassirkhan.data.repository.TrendingRepository
 import com.mudassirkhan.domain.gateway.TrendingRepositoriesGateWay
-import com.mudassirkhan.githubtrendingapis.utils.IPreference
+import com.mudassirkhan.data.util.IPreference
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

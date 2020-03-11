@@ -1,16 +1,16 @@
-package com.mudassirkhan.githubtrendingapis.ui.adapter
+package com.mudassirkhan.trendinggithubapis.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.mudassirkhan.githubtrendingapis.ui.model.TrendRepositoryModel
+import com.mudassirkhan.trendinggithubapis.ui.model.TrendRepositoryModel
 import com.mudassirkhan.trendinggithubapis.R
 import com.mudassirkhan.trendinggithubapis.databinding.SingleItemRepositoryBinding
 
 
-class RepositorisListAdapter ( private val repoList: List<TrendRepositoryModel>, private val callbacks: Callbacks? = null) :
+class RepositorisListAdapter (private val repoList: List<TrendRepositoryModel>, private val callbacks: Callbacks? = null) :
 RecyclerView.Adapter<RepositorisListAdapter.ViewHolder>() {
 
     var items = listOf<TrendRepositoryModel>()

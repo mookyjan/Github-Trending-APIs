@@ -1,8 +1,8 @@
-package com.mudassirkhan.githubtrendingapis.ui.adapter
+package com.mudassirkhan.trendinggithubapis.ui.adapter
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mudassirkhan.githubtrendingapis.ui.model.TrendRepositoryModel
+import com.mudassirkhan.trendinggithubapis.ui.model.TrendRepositoryModel
 
 object ViewBindingAdapters {
 
