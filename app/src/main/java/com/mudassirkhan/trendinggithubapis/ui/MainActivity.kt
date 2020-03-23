@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         mAdapter = RepositorisListAdapter(viewModel.sortedResult.value!!,null)
         mBinding.rvTrendingRepoList.adapter =mAdapter
         toolbarSetup()
-//        viewModel.loadTrendingRepositories()
+        viewModel.callAPi()
         observeEvents()
 
     }
@@ -56,6 +57,11 @@ class MainActivity : AppCompatActivity() {
             Timber.d { "sorted list changed $it" }
             mAdapter.setData(it)
             mAdapter.notifyDataSetChanged()
+        })
+
+        viewModel.lastUpdateValue.observe(this, Observer {
+            Toast.makeText(this,it, Toast.LENGTH_SHORT).show()
+            Timber.d { "lastUpdateValue $it" }
         })
 
     }

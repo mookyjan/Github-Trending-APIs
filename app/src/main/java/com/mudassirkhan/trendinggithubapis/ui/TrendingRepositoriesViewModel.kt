@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.ajalt.timberkt.Timber
 import com.mudassirkhan.domain.usecase.GetGithubTrendingApiUseCase
+import com.mudassirkhan.domain.usecase.GetLastApiCallUseCase
+import com.mudassirkhan.trendinggithubapis.R
 import com.mudassirkhan.trendinggithubapis.ui.model.TrendRepositoryModel
 import com.mudassirkhan.trendinggithubapis.ui.model.mapToModel
 import com.mudassirkhan.trendinggithubapis.utils.IResourceProvider
@@ -17,6 +19,7 @@ import javax.inject.Inject
 
 class TrendingRepositoriesViewModel @Inject constructor(
     private val getGithubTrendingApiUseCase: GetGithubTrendingApiUseCase,
+    private val getLastApiCallUseCase: GetLastApiCallUseCase,
     private val iResourceProvider: IResourceProvider
 ) : ViewModel() {
 
@@ -31,11 +34,23 @@ class TrendingRepositoriesViewModel @Inject constructor(
     var sortedResult: MutableLiveData<List<TrendRepositoryModel>> =
         MutableLiveData(emptyList())
 
-    init {
-        loadTrendingRepositories()
-    }
+    val lastUpdateValue = MutableLiveData<String>()
+    val isLastApiCalled = MutableLiveData<Boolean>(false)
 
-    fun refresh() = loadTrendingRepositories(true)
+    /*
+   *TODO when use init get java.lang.IllegalArgumentException: Parameter specified as non-null is null:
+   * for unit test cases
+     */
+//    init {
+//        callAPi()
+//    }
+
+    fun refresh() = callAPi(true)
+
+    fun callAPi(isRefresh: Boolean =false){
+        loadTrendingRepositories(isRefresh)
+        calculateTimeDiff()
+    }
 
     fun sortByNames() {
         val item =
@@ -74,6 +89,32 @@ class TrendingRepositoriesViewModel @Inject constructor(
             }).addTo(compositeDisposable)
     }
 
+
+
+    fun calculateTimeDiff(){
+        getLastApiCallUseCase.execute().subscribeBy(
+            onSuccess = {
+                if (it!=-1L){
+                    isLastApiCalled.value=true
+                    when(it){
+                        in 0..1 ->
+                            lastUpdateValue.value=  "0 1o 1 value"
+                        in 1..30 ->
+                            lastUpdateValue.value=iResourceProvider.context.getString(R.string.txt_time_1_to_30,it)
+                        in 30..60 ->
+                            lastUpdateValue.value=iResourceProvider.context.getString(R.string.txt_time_30_to_1_hour)
+                        in 60..120 ->
+                            lastUpdateValue.value=iResourceProvider.context.getString(R.string.txt_time_1_to_2_hour)
+                    }
+                }else{
+                    lastUpdateValue.value="-1 value returned"
+                }
+            },onError = {
+                isLastApiCalled.value=false
+            }
+        ).addTo(compositeDisposable)
+
+    }
 
     override fun onCleared() {
         super.onCleared()

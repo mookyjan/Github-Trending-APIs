@@ -1,14 +1,12 @@
-package com.mudassirkhan.githubtrendingapis.ui
+package com.mudassirkhan.trendinggithubapis.ui
 
-import android.app.Application
-import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.mudassirkhan.domain.entity.GithubTrendingEntity
 import com.mudassirkhan.domain.usecase.GetGithubTrendingApiUseCase
-import com.mudassirkhan.githubtrendingapis.ui.model.mapToModel
-import com.mudassirkhan.githubtrendingapis.utils.IPreference
-import com.mudassirkhan.githubtrendingapis.utils.IResourceProvider
-import com.mudassirkhan.trendinggithubapis.ui.TrendingRepositoriesViewModel
+import com.mudassirkhan.trendinggithubapis.ui.model.mapToModel
+import com.mudassirkhan.data.util.IPreference
+import com.mudassirkhan.domain.usecase.GetLastApiCallUseCase
+import com.mudassirkhan.trendinggithubapis.utils.IResourceProvider
 import io.reactivex.Single
 import org.hamcrest.core.Is
 import org.junit.Assert.*
@@ -18,6 +16,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import java.util.concurrent.TimeUnit
 
@@ -32,6 +31,8 @@ class TrendingRepositoriesViewModelTest{
     @Mock
     private lateinit var getHackerNewsListUseCase: GetGithubTrendingApiUseCase
 
+    @Mock
+    private lateinit var getLastApiCallUseCase: GetLastApiCallUseCase
 
     private lateinit var newsListViewModel: TrendingRepositoriesViewModel
     @Mock
@@ -47,9 +48,11 @@ class TrendingRepositoriesViewModelTest{
 
     @Before
     fun setup() {
-//        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.initMocks(this);
 
-        newsListViewModel = TrendingRepositoriesViewModel( getHackerNewsListUseCase,iResourceProvider,iPreference)
+        this.newsListViewModel = TrendingRepositoriesViewModel( getHackerNewsListUseCase,
+            getLastApiCallUseCase
+            ,iResourceProvider)
     }
 
     @Test
@@ -76,7 +79,7 @@ class TrendingRepositoriesViewModelTest{
 
         // When
 
-        newsListViewModel.loadTrendingRepositories(true)
+        newsListViewModel.loadTrendingRepositories(true).ob
 
         // Should
         assertThat(newsListViewModel.repositoriesList, Is.`is`(domainItems.mapToModel()))
@@ -177,5 +180,50 @@ class TrendingRepositoriesViewModelTest{
         //then assert
         assert(minutes==expectedValue)
     }
+
+    @Test
+    fun `sort list items by names`(){
+
+
+    }
+
+    @Test
+    fun `check for last time called Api`(){
+        // Given
+
+        val domainItems = listOf<GithubTrendingEntity>(
+            GithubTrendingEntity(
+                author = "abc",
+                avatar = "avatar",
+                currentPeriodStars = 1,
+                description = "description",
+                forks = 12,
+                url = "https://phys.org/news/2020-02-earth-cousins-upcoming-missions-biosignatures.html",
+                language = "language",
+                languageColor = "languageColor",
+                name = "name",
+                stars = 12
+            )
+        )
+        Mockito.`when`(getHackerNewsListUseCase.execute(false)).thenReturn(Single.just(domainItems))
+
+
+        val lastApiCallTime =30L
+        val timeDiff30Min = "time difference is 30 min"
+        val timeDiff60Min ="time difference is 60 min"
+        Mockito.`when`(getLastApiCallUseCase.execute()).thenReturn(Single.just(lastApiCallTime))
+
+        // When
+
+        newsListViewModel.calculateTimeDiff()
+
+        // Should
+
+        if (lastApiCallTime.equals(30L))
+            assertThat(newsListViewModel.lastUpdateValue.value, Is.`is`(timeDiff30Min))
+        else if (lastApiCallTime.equals(60L))
+            assertThat(newsListViewModel.lastUpdateValue.value, Is.`is`(timeDiff60Min))
+    }
+
 
 }
