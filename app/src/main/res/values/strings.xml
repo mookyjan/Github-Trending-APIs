@@ -7,4 +7,7 @@
     <string name="txt_error_description">An alien is probably blocking signal.</string>
     <string name="btn_retry">Retry</string>
     <string name="txt_no_internet">No Internet Connection Please Try Again</string>
+    <string name="txt_time_1_to_30">Update %d minutes ago</string>
+    <string name="txt_time_30_to_1_hour">Updated 30 minutes ago</string>
+    <string name="txt_time_1_to_2_hour">Update 1 hour ago</string>
 </resources>
