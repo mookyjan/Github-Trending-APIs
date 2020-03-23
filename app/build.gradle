@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+apply plugin: 'jacoco-android'
 android {
     def ext = rootProject.extensions.ext
     compileSdkVersion ext.android.compileSdk

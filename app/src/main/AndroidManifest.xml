@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         tools:replace="android:theme"
         android:name=".GitHubTrendingApp"
+        android:hardwareAccelerated="false"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".ui.MainActivity">
             <intent-filter>
