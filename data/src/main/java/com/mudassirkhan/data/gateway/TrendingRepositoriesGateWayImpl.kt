@@ -16,4 +16,8 @@ class TrendingRepositoriesGateWayImpl(private val trendingRepository: TrendingRe
     }
 
 
+    override fun getLastTimeAPICall(): Single<Long> {
+
+        return trendingRepository.checkLastApiCallTimeDiffInMin()
+    }
 }
